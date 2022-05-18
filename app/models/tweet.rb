@@ -1,3 +1,3 @@
 class Tweet < ApplicationRecord
-  validates :text, presence: true
+  validates :kcal, presence: true
 end
