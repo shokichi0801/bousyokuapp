@@ -1,6 +1,7 @@
 class TweetsController < ApplicationController
-
-  def index
+ before_action :set_tweet, only: [:edit, :show]
+ 
+ def index
     @tweets = Tweet.all
   end
 
@@ -18,12 +19,15 @@ class TweetsController < ApplicationController
   end
 
   def edit
-    @tweet = Tweet.find(params[:id])
+   
   end
 
   def update
     tweet = Tweet.find(params[:id])
     tweet.update(tweet_params)
+  end
+
+  def show
   end
   
   private
@@ -31,16 +35,8 @@ class TweetsController < ApplicationController
     params.require(:tweet).permit(:name, :image, :kcal)
   end
 
-end
-
-  def create 
-    @tweet.create(tweet_params)
+  def set_tweet
+    @tweet = Tweet.find(params[:id])
   end
-
-  private
-  def tweet_params
-    params.require(:tweet).permit(:name, :image, :text)
-  end
-
 end
 
